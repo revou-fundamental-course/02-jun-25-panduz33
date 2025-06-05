@@ -1,0 +1,49 @@
+/* Header Component */
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    /* border : 1px solid green; */
+}
+
+.main-logo{
+    border: 1px solid red;
+    height: 50px;
+    width: 50px;
+    background-image: url(https://picsum.photos/200);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Navbar Component */
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav > a {
+    border: 1px solid red;
+    padding: 8px;
+    color: black;
+    border-radius: 4px;
+}
+
+section {
+    height: 500px;
+}
+
+/* Main Content */
+
+.banner-image{
+    border: 1px solid;
+    height: 350px;
+    background: url(https://picsum.photos/750);
+    background-size: cover;
+    background-position: center;
+}
+
+footer{
+    text-align: center;
+}
