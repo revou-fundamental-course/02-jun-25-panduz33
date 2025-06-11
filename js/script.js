@@ -63,21 +63,6 @@ function formHandler(){
     });
 }
 
-// function imageSlider(){
-//     const images = document.querySelectorAll(".image-slider img");
-//     let currentIndex = 0;
-//     function showImage(index){
-//         images.forEach((image, i) => {
-//             image.classList.toggle("active", i === index);
-//         });
-//     }
-
-//     setInterval( () => {
-//         currentIndex = (currentIndex + 1) % images.length;
-//         showImage(currentIndex);
-//     }, 5000);
-// }
-
 function imageSlider(){
     const data = [
         {
@@ -163,8 +148,41 @@ function imageSlider(){
     }, 3000);
 }
 
+/**
+ * 
+ * @param {string[]} array
+ * @param {string} ulId 
+ */
+function listGenerator(array, ulId){
+    const ul = document.getElementById(ulId);
+    array.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+    });
+}
+
+//List of Skills, Tools, and SoftSkills
+const technicalSkills = [
+    "Manual Testing", "Automation Testing", "API Testing", "Web Testing", "Mobile Testing (Android)", "Test Case Design", "Test Planning", 
+    "SQL", "HTML", "CSS", "REST API", "GraphQL", "Javascript", "Java", "Golang"
+  ];
+  
+  const tools = [
+    "WebdriverIO", "CodeceptJS", "Node-RED", "Appium", "Appium Inspector", "HTTP-Toolkit", "Mocha JS", "Chai JS", 
+    "Allure", "Postman", "Selenium", "Selenium IDE", "Katalon", "Git", "Hammertime", "Hammerflux", "Tesla-Go", "T-Rex", "Endurium"
+  ];
+  
+  const softSkills = [
+    "Analytical Thinking", "Attention to Detail", "Problem Solving", "Communication", "Collaboration", 
+    "Mentorship", "Adaptability", "Time Management"
+  ];
+
 window.addEventListener('DOMContentLoaded', () => {
     formHandler();
     showGreeting();
     imageSlider();
+    listGenerator(technicalSkills, "technical-skills");
+    listGenerator(tools, "tools");
+    listGenerator(softSkills, "soft-skills");
 });
