@@ -1,58 +1,89 @@
+import {
+  techStackData,
+  technicalSkills,
+  softSkills,
+  tools,
+} from "../data/static_text.js";
+
 function showGreeting() {
-    const element = document.getElementById("greeting");
+  const element = document.getElementById("greeting");
 
-    // Using localStorage to store the name and time
-    let visitorData = JSON.parse(localStorage.getItem("visitorData"));
+  // Using localStorage to store the name and time
+  let visitorData = JSON.parse(localStorage.getItem("visitorData"));
 
-    const expTime = 10; // in minutes
+  const expTime = 10; // in minutes
 
-    let name;
+  let name;
 
-    if (visitorData) {
-        const currentTime = new Date().getTime();
-        const isExpired = (currentTime - visitorData.time) > expTime * 60 * 1000;
+  if (visitorData) {
+    const currentTime = new Date().getTime();
+    const isExpired = currentTime - visitorData.time > expTime * 60 * 1000;
 
-        if (!isExpired) {
-            name = visitorData.name; // valid, not expired
-        } else {
-            // Data expired
-            localStorage.removeItem("visitorData");
-        }
+    if (!isExpired) {
+      name = visitorData.name; // valid, not expired
+    } else {
+      // Data expired
+      localStorage.removeItem("visitorData");
     }
+  }
 
-    // If no valid name found, prompt the user
-    if (!name) {
-        name = prompt("Please enter your name:");
+  // If no valid name found, prompt the user
+  if (!name) {
+    name = prompt("Please enter your name:");
 
-        if (name && name.trim() !== "") {
-            const visitorData = {
-                name: name,
-                time: new Date().getTime() // store current time in ms
-            };
-            localStorage.setItem("visitorData", JSON.stringify(visitorData));
-        } else {
-            name = "Guest";
-        }
+    if (name && name.trim() !== "") {
+      const visitorData = {
+        name: name,
+        time: new Date().getTime(), // store current time in ms
+      };
+      localStorage.setItem("visitorData", JSON.stringify(visitorData));
+    } else {
+      name = "Guest";
     }
+  }
 
-    element.textContent = `${name}!`;
+  element.textContent = `${name}!`;
 }
 
+function formHandler() {
+  //Using Tech Stack Data
 
-function formHandler(){
-    const form = document.getElementById("form");
-    const output = document.getElementById("bounce-form-text");
+  const form = document.getElementById("form");
+  const output = document.getElementById("bounce-form-text");
 
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        const formName = document.getElementById("form-name").value;
-        const formEmail = document.getElementById("form-email").value;
-        const formMessage = document.getElementById("form-message").value;
-        if(formName === "" || formMessage === "" || formEmail === ""){
-            alert(`Please fill in all fields`);
-            return;
-        }
-        output.innerHTML = `Thank you for your message! <br/>
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formName = document.getElementById("form-name").value.trim();
+    const formEmail = document.getElementById("form-email").value.trim();
+    const formMessage = document.getElementById("form-message").value.trim();
+
+    // Regular Expression for basic email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let errorMessages = [];
+
+    if (formName === "") {
+      errorMessages.push("Name is required.");
+    }
+
+    if (formEmail === "") {
+      errorMessages.push("Email is required.");
+    } else if (!emailPattern.test(formEmail)) {
+      errorMessages.push("Please enter a valid email address.");
+    }
+
+    if (formMessage === "") {
+      errorMessages.push("Message cannot be empty.");
+    }
+
+    if (errorMessages.length > 0) {
+      e.preventDefault(); // Stop form from submitting
+      alert(errorMessages.join("\n")); // Display all error messages
+      return;
+    }
+
+    //name validation
+    output.innerHTML = `Thank you for your message! <br/>
         Here is the summary information you have submitted:  <br/>
         <br/>
         Name: ${formName}  <br/>
@@ -60,129 +91,64 @@ function formHandler(){
         Message: ${formMessage} <br/>
         <br/>
         Please kindly wait for our response`;
-    });
+  });
 }
 
-function imageSlider(){
-    const data = [
-        {
-            image : "assets/android-http-toolkit.jpg",
-            title : "Android with HTTP Toolkit",
-            summary : "Mobile Testing & Network Debugging",
-            description : "The Android Device Emulator combined with HTTP Toolkit provides a powerful environment for testing mobile applications and debugging network traffic. This combination allows developers to intercept, view and mock HTTP(S) from Android emulators, helping to identify and fix issues in mobile app communication.",
-            pros : ['Real device simulation', 'Network traffic inspection', 'API debugging', 'Performance monitoring']
-        },
-        {
-            image : "assets/codecept-mocha.jpg",
-            title : "Codecept JS with Mocha JS",
-            summary : "End-to-End Testing Framework",
-            description : "CodeceptJS is a modern end-to-end testing framework with a focus on developer experience. It provides a high-level API over popular testing tools like Playwright, Puppeteer, and Selenium WebDriver, allowing you to write tests in a user-centric way.",
-            pros : ['Easy-to-read syntax', 'Multiple drivers support', 'Parallel testing', 'BDD-style assertions']
-        },
-        {
-            image : "assets/katalon.jpg",
-            title : "Katalon",
-            summary : "Unified Quality Management Platform",
-            description : "Katalon is an all-in-one test automation solution that helps teams of any size deliver high-quality software. It provides capabilities for API, web, mobile, and desktop application testing with both codeless and code-based approaches.",
-            pros : ['Codeless automation', 'Cross-platform testing', 'CI/CD integration', 'Comprehensive reporting']
-        },
-        {
-            image : "assets/mocha-axios-chai.jpg",
-            title : "Mocha JS with Axios and Chai JS",
-            summary : "JavaScript Testing & HTTP Client Stack",
-            description : "This powerful combination provides a complete solution for JavaScript testing. Mocha offers a feature-rich testing framework, Chai delivers an expressive assertion library with multiple styles, and Axios handles HTTP requests with an elegant promise-based API. Together they create a robust stack for testing APIs and JavaScript applications.",
-            pros : ['Flexible test structure', 'Expressive assertion library', 'Promise-based HTTP requests', 'Great for API testing']
-        },
-        {
-            image : "assets/node-red.jpg",
-            title : "Node RED",
-            summary : "Flow-based Programming Tool",
-            description : "Node-RED is a flow-based programming tool for connecting hardware devices, APIs, and online services. It provides a browser-based editor that makes it easy to wire together flows using a wide range of nodes, and then deploy them with a single click.",
-            pros : ['Visual programming interface', 'Large library of nodes', 'Easy integration with IoT devices', 'Low-code development']
-        },
-        {
-            image : "assets/postman-newman-htmlextra.jpg",
-            title : "Postman, Newman Runner, HTML Extra Reporter",
-            summary : "API Testing & Development",
-            description : "Postman is a popular API client that makes it easy to create, share, test, and document APIs. It offers a user-friendly interface for sending requests, receiving responses, setting up automated tests, and generating documentation.",
-            pros : ['User-friendly interface', 'Extensive testing capabilities', 'Great for collaboration', 'Automated testing support']
-        },
-        {
-            image : "assets/webdriver-io.jpg",
-            title : "Webdriver IO",
-            summary : "Next-gen Browser & Mobile Automation",
-            description : "WebdriverIO is a progressive automation framework built to automate modern web and mobile applications. It simplifies the interaction with your app and provides a set of plugins that help you create a scalable, robust and stable test suite.",
-            pros : ['Modern JavaScript support', 'Cross-browser testing', 'Mobile testing capabilities', 'Extensive plugin ecosystem']
-        }
-    ]
+function imageSlider() {
+  console.log(techStackData);
+  let index = 0;
 
-    let index = 0;
+  const imgElement = document.getElementById("slider-image");
+  const titleElement = document.getElementById("slider-title");
+  const summaryElement = document.getElementById("slider-summary");
+  const descriptionElement = document.getElementById("slider-description");
 
-    const imgElement = document.getElementById("slider-image");
-    const titleElement = document.getElementById("slider-title");
-    const summaryElement = document.getElementById("slider-summary");
-    const descriptionElement = document.getElementById("slider-description");
-    
-    function showSlide(index){
-        imgElement.setAttribute("src", data[index].image);
-        imgElement.setAttribute("alt", data[index].title);
-        titleElement.textContent = data[index].title;
-        summaryElement.textContent = data[index].summary;
-        descriptionElement.textContent = data[index].description;
+  function showSlide(index) {
+    imgElement.setAttribute("src", techStackData[index].image);
+    imgElement.setAttribute("alt", techStackData[index].title);
+    titleElement.textContent = techStackData[index].title;
+    summaryElement.textContent = techStackData[index].summary;
+    descriptionElement.textContent = techStackData[index].description;
 
-        data[index].pros.forEach((pro, index) => {
-            const prosItem = document.getElementById(`slider-pros-${index + 1}`);
-            if(prosItem){
-                prosItem.textContent = pro;
-            }
-        });    
-    }
+    techStackData[index].pros.forEach((pro, index) => {
+      const prosItem = document.getElementById(`slider-pros-${index + 1}`);
+      if (prosItem) {
+        prosItem.textContent = pro;
+      }
+    });
+  }
 
-    //Show first slide
+  //Show first slide
+  showSlide(index);
+
+  //Change the image every 5 seconds
+  setInterval(() => {
+    index = (index + 1) % techStackData.length;
     showSlide(index);
-
-    //Change the image every 3 seconds
-    setInterval(() => {
-        index = (index + 1) % data.length;
-        showSlide(index);
-    }, 3000);
+  }, 5000);
 }
 
 /**
- * 
+ *
  * @param {string[]} array
- * @param {string} ulId 
+ * @param {string} ulId
  */
-function listGenerator(array, ulId){
-    const ul = document.getElementById(ulId);
-    array.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        ul.appendChild(li);
-    });
+function listGenerator(array, ulId) {
+  const ul = document.getElementById(ulId);
+  array.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
 }
 
 //List of Skills, Tools, and SoftSkills
-const technicalSkills = [
-    "Manual Testing", "Automation Testing", "API Testing", "Web Testing", "Mobile Testing (Android)", "Test Case Design", "Test Planning", 
-    "SQL", "HTML", "CSS", "REST API", "GraphQL", "Javascript", "Java", "Golang"
-  ];
-  
-  const tools = [
-    "WebdriverIO", "CodeceptJS", "Node-RED", "Appium", "Appium Inspector", "HTTP-Toolkit", "Mocha JS", "Chai JS", 
-    "Allure", "Postman", "Selenium", "Selenium IDE", "Katalon", "Git", "Hammertime", "Hammerflux", "Tesla-Go", "T-Rex", "Endurium"
-  ];
-  
-  const softSkills = [
-    "Analytical Thinking", "Attention to Detail", "Problem Solving", "Communication", "Collaboration", 
-    "Mentorship", "Adaptability", "Time Management"
-  ];
 
-window.addEventListener('DOMContentLoaded', () => {
-    formHandler();
-    showGreeting();
-    imageSlider();
-    listGenerator(technicalSkills, "technical-skills");
-    listGenerator(tools, "tools");
-    listGenerator(softSkills, "soft-skills");
+window.addEventListener("DOMContentLoaded", () => {
+  formHandler();
+  showGreeting();
+  imageSlider();
+  listGenerator(technicalSkills, "technical-skills");
+  listGenerator(tools, "tools");
+  listGenerator(softSkills, "soft-skills");
 });
