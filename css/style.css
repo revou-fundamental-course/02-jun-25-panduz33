@@ -42,6 +42,7 @@ nav {
 nav a {
     border: 1px solid #dcdcdc;
     padding: 8px 12px;
+    margin-right: 10px;
     width: 120px;
     text-align: center;
     color: #333;
