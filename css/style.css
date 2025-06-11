@@ -208,13 +208,32 @@ footer {
 
 #footer-message {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .ask-me{
-    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #message-us {
@@ -240,11 +259,9 @@ form > label {
 
 #bounce-form {
     border: 1px solid #ddd;
-    margin: 80px auto 0 auto;
+    /* margin: 80px auto 0 auto; */
     padding: 1rem;
     width: 100%;
     max-width: 600px;
     height: 350px;
-    margin-bottom: 90px;
-    margin-left: 90px;
 }

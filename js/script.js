@@ -48,7 +48,7 @@ function formHandler(){
         const formName = document.getElementById("form-name").value;
         const formEmail = document.getElementById("form-email").value;
         const formMessage = document.getElementById("form-message").value;
-        if(formName === "" || !formMessage === "" || formEmail === ""){
+        if(formName === "" || formMessage === "" || formEmail === ""){
             alert(`Please fill in all fields`);
             return;
         }
