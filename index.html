@@ -2,16 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pandu Portfolio Web - Home</title>
+
+    <!-- Load CSS File -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+
+    <!-- move the script to bottom of body -->
     <!-- <script src="js/script.js"></script> -->
 </head>
 <body>
     <!-- Header Content -->
     <header class="main-header">
-        <!-- Logo Website -->
-        <div class="main-logo"></div>
+        <!-- Logo Website, clickable, redirect to homepage -->
+         <a href="/">
+            <div class="main-logo"></div>
+         </a>
 
         <!-- Navbar -->
         <nav>
@@ -26,6 +35,7 @@
         </nav>
     </header>
 
+    <!-- Divider -->
     <div class="section-divider"></div>
 
     <!-- Main Content -->
@@ -37,6 +47,7 @@
                 Feel free to explore and discover more about my work and passion in the field of software quality assurance.</p>
             </p>
 
+            <!-- image slider -->
             <div class="image-slider">
                 <div class="image-container">
                     <img id ="slider-image" src="" alt="">
@@ -55,42 +66,50 @@
             </div>
         </section>
 
+        <!-- Divider -->
         <div class="section-divider"></div>
 
-        <!-- Our Profile -->
+        <!-- My Profile -->
         <section id="my-profile">
             <div>
-            <h1>My Profile</h1>
-            <p>I'm a passionate Software Test Engineer with expertise in both manual and automated testing and quality assurance. 
-                I have strong attention to detail and a passion for exploration, with experience in Web UI testing, API testing, and manual and automated testing for Android applications.</p>
-                <p>I collaborate closely with developers to investigate and identify the root causes of bugs in both Web UI and Android apps, and support Product Managers in conducting User Acceptance Testing (UAT) and feature or application demonstrations.</p>
-                <p>My approach combines technical expertise with a user-centered mindset, ensuring that applications not only function correctly but also provide an excellent user experience.</p>
+                <h1>My Profile</h1>
+                    <p>I'm a passionate Software Test Engineer with expertise in both manual and automated testing and quality assurance. 
+                    I have strong attention to detail and a passion for exploration, with experience in Web UI testing, API testing, and manual and automated testing for Android applications.</p>
+                    <p>I collaborate closely with developers to investigate and identify the root causes of bugs in both Web UI and Android apps, and support Product Managers in conducting User Acceptance Testing (UAT) and feature or application demonstrations.</p>
+                    <p>My approach combines technical expertise with a user-centered mindset, ensuring that applications not only function correctly but also provide an excellent user experience.</p>
             </div>
             </section>
 
         <section id="skills-section">
+            <!-- technical-skills -->
             <div>
                 <h2>Technical Skills</h2>
                 <ul id="technical-skills"></ul>
             </div>
+            <!-- tools -->
           <div>
             <h2>Tools</h2>
             <ul id="tools"></ul>
           </div>
+          <!-- Soft Skiils -->
           <div>
             <h2>Soft Skills</h2>
             <ul id="soft-skills"></ul>
           </div>
         </section>
 
+        <!-- divider -->
         <div class="section-divider"></div>
-        <!-- Ask Me -->
+
+        <!-- Footer -->
          <div id="footer-message">
             <div class="ask-me">
                 <h1>Ask Me</h1>
                 <p>If you have any question, feel free to ask me!</p>
             </div>
         </div>
+
+        <!-- Form Section -->
         <div id="form-container">
             <section id="form-section">
                 <form action="" id="form">
@@ -104,6 +123,7 @@
             </form>
             </section>
 
+            <!-- Form Feedback -->
             <section id="bounce-form">
             <p id="bounce-form-text">Please fill in the form</p>
             </section>
@@ -116,6 +136,7 @@
         <p>Copyright© 2025 Pandu Setiawan, Made By ❤️️</p>
     </footer>
 
+    <!-- Script Source -->
     <script src="js/script.js" type="module"></script>
 </body>
 </html>

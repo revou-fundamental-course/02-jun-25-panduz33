@@ -5,6 +5,7 @@ import {
   tools,
 } from "../data/static_text.js";
 
+//Greeting function
 function showGreeting() {
   const element = document.getElementById("greeting");
 
@@ -45,9 +46,9 @@ function showGreeting() {
   element.textContent = `${name}!`;
 }
 
+//Form Handler
 function formHandler() {
   //Using Tech Stack Data
-
   const form = document.getElementById("form");
   const output = document.getElementById("bounce-form-text");
 
@@ -94,8 +95,9 @@ function formHandler() {
   });
 }
 
+//Image Slider
 function imageSlider() {
-  console.log(techStackData);
+//Using tech stack data
   let index = 0;
 
   const imgElement = document.getElementById("slider-image");
@@ -132,6 +134,8 @@ function imageSlider() {
  *
  * @param {string[]} array
  * @param {string} ulId
+ * 
+ * Static List Generator
  */
 function listGenerator(array, ulId) {
   const ul = document.getElementById(ulId);
